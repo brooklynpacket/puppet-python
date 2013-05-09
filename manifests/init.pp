@@ -13,9 +13,6 @@
 # [*virtualenv*]
 #  Install python-virtualenv. Default: false
 #
-# [*gunicorn*]
-#  Install Gunicorn. Default: false
-#
 # === Examples
 #
 # class { 'python':
