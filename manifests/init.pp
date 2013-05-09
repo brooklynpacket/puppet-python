@@ -1,6 +1,6 @@
 # == Class: python
 #
-# Installs and manages python, python-dev, python-virtualenv and Gunicorn.
+# Installs and manages python, python-dev, and python-virtualenv.
 #
 # === Parameters
 #
