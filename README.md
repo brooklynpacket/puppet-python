@@ -15,13 +15,10 @@ Installs and manages python, python-dev, python-virtualenv and Gunicorn.
 
 **virtualenv** — Install python-virtualenv. Default: false
 
-**gunicorn** — Install Gunicorn. Default: false
-
 	class { 'python':
 	  version    => 'system',
 	  dev        => true,
 	  virtualenv => true,
-	  gunicorn   => true,
 	}
 
 ### python::pip
@@ -77,34 +74,6 @@ Creates Python virtualenv.
 	  proxy        => 'http://proxy.domain.com:3128',
 	  systempkgs   => true,
 	  distribute   => false,
-	}
-
-### python::gunicorn
-
-Manages Gunicorn virtual hosts.
-
-**ensure** — present/absent. Default: present
-
-**virtualenv** — Run in virtualenv, specify directory. Default: disabled
-
-**mode** — Gunicorn mode. wsgi/django. Default: wsgi
-
-**dir** — Application directory.
-
-**bind** — Bind on: 'HOST', 'HOST:PORT', 'unix:PATH'. Default: unix:/tmp/gunicorn-$name.socket or unix:${virtualenv}/${name}.socket
-
-**environment** — Set ENVIRONMENT variable. Default: none
-
-**template** — Which ERB template to use. Default: python/gunicorn.erb
-
-	python::gunicorn { 'vhost':
-	  ensure      => present,
-	  virtualenv  => '/var/www/project1',
-	  mode        => 'wsgi',
-	  dir         => '/var/www/project1/current',
-	  bind        => 'unix:/tmp/gunicorn.socket',
-	  environment => 'prod',
-	  template    => 'python/gunicorn.erb',
 	}
 
 ## Authors

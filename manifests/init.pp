@@ -19,7 +19,6 @@
 #   version    => 'system',
 #   dev        => true,
 #   virtualenv => true,
-#   gunicorn   => true,
 # }
 #
 # === Authors
@@ -30,7 +29,6 @@ class python (
   $version    = 'system',
   $dev        = false,
   $virtualenv = false,
-  $gunicorn   = false
 ) {
 
   # Module compatibility check
