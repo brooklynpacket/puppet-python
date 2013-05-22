@@ -73,7 +73,7 @@ define python::virtualenv (
       default  => '--system-site-packages',
     }
 
-    $distribute_pkg = $distribute ? {
+tinyzoo/manifests/    $distribute_pkg = $distribute ? {
       true     => 'distribute',
       default  => '',
     }
@@ -84,7 +84,7 @@ define python::virtualenv (
         && virtualenv -p `which ${python}` ${system_pkgs_flag} ${venv_dir} \
         && ${venv_dir}/bin/pip install ${proxy_flag} --upgrade ${distribute_pkg} pip",
       user    => $owner,
-      creates => $venv_dir,
+      creates => "${venv_dir}/bin/activate",
       path    => [ '/bin', '/usr/bin', '/usr/sbin' ],
     }
 
