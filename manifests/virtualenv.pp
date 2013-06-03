@@ -73,7 +73,7 @@ define python::virtualenv (
       default  => '--system-site-packages',
     }
 
-tinyzoo/manifests/    $distribute_pkg = $distribute ? {
+    $distribute_pkg = $distribute ? {
       true     => 'distribute',
       default  => '',
     }
