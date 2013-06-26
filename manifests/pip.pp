@@ -31,7 +31,8 @@ define python::pip (
   $virtualenv,
   $ensure = present,
   $url    = false,
-  $proxy  = false
+  $proxy  = false,
+  $refreshonly = false
 ) {
 
   # Parameter validation
@@ -61,6 +62,14 @@ define python::pip (
         unless  => "${virtualenv}/bin/pip freeze | grep -i -e ${grep_regex}",
       }
     }
+   
+    latest: {
+      exec { "pip_install_${name}" :
+        command => "${virtualenv}/bin/pip install -U ${proxy_flag} ${source}",
+        refreshonly => $refreshonly,
+      }
+    }
+     
 
     default: {
       exec { "pip_uninstall_${name}":
