@@ -85,7 +85,6 @@ define python::virtualenv (
         && ${venv_dir}/bin/pip install ${proxy_flag} --upgrade ${distribute_pkg} pip",
       user    => $owner,
       creates => $venv_dir,
-      path    => [ '/bin', '/usr/bin', '/usr/sbin' ],
     }
 
     file{$venv_dir:
