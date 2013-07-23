@@ -93,7 +93,6 @@ define python::virtualenv (
       owner   => $owner,
       group   => $group,
       recurse => true,
-      require => Exec["python_virtualenv_${venv_dir}"],
     }
 
     if $requirements {
