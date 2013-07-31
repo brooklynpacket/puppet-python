@@ -16,6 +16,9 @@
 # [*proxy*]
 #  Proxy server to use for outbound connections. Default: none
 #
+# [*user*]
+#  User to run the pip command as. May affect error output. Default: none
+#
 # === Examples
 #
 # python::pip { 'flask':
@@ -32,8 +35,9 @@ define python::pip (
   $ensure = present,
   $url    = false,
   $proxy  = false,
+  $user = undef,
   $refreshonly = false
-) {
+  ) {
 
   # Parameter validation
   if ! $virtualenv {
@@ -55,6 +59,12 @@ define python::pip (
     default => "${url}#egg=${name}",
   }
 
+  if $user != undef {
+    Exec {
+      user => $user,
+    }
+  }
+
   case $ensure {
     present: {
       exec { "pip_install_${name}":
@@ -65,7 +75,7 @@ define python::pip (
    
     latest: {
       exec { "pip_install_${name}" :
-        command => "${virtualenv}/bin/pip install -U ${proxy_flag} ${source}",
+        command     => "${virtualenv}/bin/pip install -U ${proxy_flag} ${source}",
         refreshonly => $refreshonly,
       }
     }
